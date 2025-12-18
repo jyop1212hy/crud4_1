@@ -61,7 +61,7 @@ public class MemberController {
      * 수정
      */
     @PatchMapping("/member/{memberId}")
-    public ResponseEntity<ApiResponse<UpdateMemberResponse>> UpdateResponse(@PathVariable Long memberId, @RequestBody UpdateRequest request) {
+    public ResponseEntity<ApiResponse<UpdateMemberResponse>> updateResponse(@PathVariable Long memberId, @RequestBody UpdateRequest request) {
         UpdateMemberResponse updateMember = memberService.update(memberId, request);
         ApiResponse<UpdateMemberResponse> apiResponse = new ApiResponse<>("Success", 200, updateMember);
         ResponseEntity<ApiResponse<UpdateMemberResponse>> response = ResponseEntity.ok(apiResponse);
@@ -73,7 +73,7 @@ public class MemberController {
      * 삭제
      */
     @DeleteMapping("/member/{memberId}")
-    public ResponseEntity<ApiResponse<DeleteMemberResponse>> DeleteResponse(@PathVariable Long memberId) {
+    public ResponseEntity<ApiResponse<DeleteMemberResponse>> deleteResponse(@PathVariable Long memberId) {
         DeleteMemberResponse updateMember = memberService.delete(memberId);
         ApiResponse<DeleteMemberResponse> apiResponse = new ApiResponse<>("Success", 200, updateMember);
         ResponseEntity<ApiResponse<DeleteMemberResponse>> response = ResponseEntity.ok(apiResponse);

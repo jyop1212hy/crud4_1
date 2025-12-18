@@ -45,10 +45,9 @@ public class MemberService {
         String savedUserEmail = savedUser.getEmail();
         String savedUserName = savedUser.getName();
         LocalDateTime createdAt = savedUser.getCreatedAt();
-        LocalDateTime updatedAt = savedUser.getModifiedAt();
 
         //DTO 담기
-        CreateMemberResponse response = new CreateMemberResponse(savedUserId, savedUserEmail, savedUserName, createdAt, updatedAt);
+        CreateMemberResponse response = new CreateMemberResponse(savedUserId, savedUserEmail, savedUserName, createdAt);
         return response;
     }
 
@@ -137,11 +136,11 @@ public class MemberService {
         Member member = memberRepository.findByDeletedAtIsNull(memberId);
 //                .orElseThrow(() -> new IllegalArgumentException("아이디가 없습니다."));
 
-        //데이터베이스 저장
-        memberRepository.delete(member);
-
         //데이터 추출
         Long savedUserId = member.getId();
+
+        //소프트 삭제
+        member.softDelete();
 
         //DTO 담기
         DeleteMemberResponse response = new DeleteMemberResponse(savedUserId);

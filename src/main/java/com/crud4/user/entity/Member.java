@@ -3,8 +3,6 @@ package com.crud4.user.entity;
 import com.crud4.common.BaseTimeEntity;
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Table(name = "members")
 public class Member extends BaseTimeEntity {
